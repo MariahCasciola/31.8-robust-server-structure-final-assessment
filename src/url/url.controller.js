@@ -6,6 +6,7 @@ const urls = require(path.resolve("src/data/urls-data"));
 function urlExists(req, res, next) {
   const { urlId } = req.params;
   const foundUrl = urls.find((url) => Number(urlId) === url.id);
+  // console.log("this in my found url", foundUrl)
   if (foundUrl) {
     res.locals.url = foundUrl;
     return next();
@@ -36,22 +37,12 @@ function read(req, res, next) {
 
 // put with an id(need a request body req.body)
 function update(req, res, next) {
-  const url = res.locals.note;
+  const url = res.locals.url;
   const { data: { href } = {} } = req.body;
 
   //   updates the url
   url.href = href;
   res.json({ data: url });
-}
-
-// delete, need an id
-function destory(req, res, next) {
-  const { urlId } = req.params;
-  const index = urls.findIndex((url) => url.id === Number(urlId));
-  if (index > -1) {
-    urls.splice(index, 1);
-  }
-  res.sendStatus(204);
 }
 
 // get
@@ -61,7 +52,6 @@ function list(req, res, next) {
 
 //
 module.exports = {
-  destory,
   create: [hasHref, create],
   read: [urlExists, read],
   update: [urlExists, hasHref, update],

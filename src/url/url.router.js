@@ -13,7 +13,6 @@ router
   .route("/:urlId")
   .get(controller.read)
   .put(controller.update)
-  .delete(controller.destory)
   .all(methodNotAllowed);
 
 router

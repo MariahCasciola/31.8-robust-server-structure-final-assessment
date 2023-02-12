@@ -5,7 +5,7 @@ const methodNotAllowed = require("../errors/methodNotAllowed");
 router
   .route("/:useId")
   .get(controller.read)
-  .delete(controller.destory)
+  .delete(controller.delete)
   .all(methodNotAllowed);
 
 router.route("/").get(controller.list).all(methodNotAllowed);

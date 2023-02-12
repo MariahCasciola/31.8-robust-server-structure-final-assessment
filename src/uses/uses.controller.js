@@ -1,5 +1,4 @@
 const path = require("path");
-const { use } = require("../app");
 const uses = require(path.resolve("src/data/uses-data"));
 
 //check is useExists?
@@ -29,18 +28,17 @@ function read(req, res, next) {
 }
 
 //delete with id
-function destory(req, res, next) {
+function destroy(req, res, next) {
   const { useId } = req.params;
   const index = uses.findIndex((use) => use.id === Number(useId));
   if (index > -1) {
-   uses.splice(index, 1)
+    uses.splice(index, 1);
   }
-  res.sendStatus(204)
+  res.sendStatus(204);
 }
 
 module.exports = {
-  useExists,
   list,
   read: [useExists, read],
-  destory,
+  delete: destroy,
 };
