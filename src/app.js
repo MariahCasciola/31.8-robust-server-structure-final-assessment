@@ -4,10 +4,11 @@ const app = express();
 // require url router
 const urlsRouter = require("./url/url.router");
 // require  uses router
+const usesRouter = require("./uses/uses.router")
 
 app.use(express.json());
 app.use("/urls", urlsRouter);
-//app.use("/uses", usesRouter)
+app.use("/uses", usesRouter)
 
 // Not-found handler
 app.use((req, res, next) => {
