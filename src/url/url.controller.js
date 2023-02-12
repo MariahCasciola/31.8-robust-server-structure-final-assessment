@@ -2,7 +2,6 @@ const path = require("path");
 const urls = require(path.resolve("src/data/urls-data"));
 
 // crudl: create, read, update, destroy, list
-//does urls exist? does urls have an href?
 
 function urlExists(req, res, next) {
   const { urlId } = req.params;

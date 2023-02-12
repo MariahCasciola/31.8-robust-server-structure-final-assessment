@@ -1,8 +1,13 @@
-const router = require("express").Router({mergeParams: true});
+const router = require("express").Router({ mergeParams: true });
 const controller = require("./uses.controller");
+const methodNotAllowed = require("../errors/methodNotAllowed");
 
-router.route("/:useId").get(controller.read).delete(controller.destory);
+router
+  .route("/:useId")
+  .get(controller.read)
+  .delete(controller.destory)
+  .all(methodNotAllowed);
 
-router.route("/").get(controller.list);
+router.route("/").get(controller.list).all(methodNotAllowed);
 
 module.exports = router;
