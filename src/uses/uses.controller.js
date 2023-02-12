@@ -15,7 +15,9 @@ function list(req, res, next) {
 }
 
 //
-function read(req, res, next) {}
+function read(req, res, next) {
+    
+}
 
 //
 function destory(req, res, next) {}
