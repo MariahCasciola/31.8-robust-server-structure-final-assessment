@@ -8,6 +8,7 @@
   },
   "main": "src/server.js",
   "scripts": {
+    "dev": "nodemon src/server.js",
     "docker:build": "docker image build . -t thinkful-ed/zid-be-robust-server-structure-xx-assignment",
     "docker:run": "docker run --rm -it -p 5000:5000 thinkful-ed/zid-be-robust-server-structure-xx-assignment",
     "docker:stop": "docker stop $(docker ps -q)",
@@ -27,7 +28,7 @@
   },
   "devDependencies": {
     "jest": "^26.4.2",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "supertest": "^5.0.0"
   },
   "bugs": {
