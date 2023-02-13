@@ -40,5 +40,5 @@ function destroy(req, res, next) {
 module.exports = {
   list,
   read: [useExists, read],
-  delete: destroy,
+  delete: [useExists, destroy],
 };
