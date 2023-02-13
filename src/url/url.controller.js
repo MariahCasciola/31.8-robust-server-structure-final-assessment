@@ -1,5 +1,6 @@
 const path = require("path");
 const urls = require(path.resolve("src/data/urls-data"));
+const uses = require(path.resolve("src/data/uses-data"));
 
 // crudl: create, read, update, destroy, list
 
@@ -20,6 +21,14 @@ function hasHref(req, res, next) {
     return next();
   }
   next({ status: 400, message: "A 'href' property is required." });
+}
+
+// side effect of get request to urls/:urlId(read), new use will be created
+function createNewUse(req, res, next) {
+  const urlId = res.locals.url.id;
+  const newUse = { id: uses.length + 1, urlId, time: Date.now() };
+  uses.push(newUse);
+  return next();
 }
 
 //post, needs body
@@ -53,7 +62,7 @@ function list(req, res, next) {
 //
 module.exports = {
   create: [hasHref, create],
-  read: [urlExists, read],
+  read: [urlExists, createNewUse, read],
   update: [urlExists, hasHref, update],
   list,
   urlExists,
